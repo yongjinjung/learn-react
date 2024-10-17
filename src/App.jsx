@@ -1,39 +1,9 @@
-import { useState } from 'react'
 import './App.css'
-
-function Header() {
-  return (
-    <header>
-      <h2>header</h2>
-    </header>
-  )
-}
-
-function Footer() {
-  return (
-    <footer>
-      <h2>Footer</h2>
-    </footer>
-  )
-}
-
-function Main(){
-  return (
-    <main>
-      <Counter />
-    </main>
-  );
-}
-
-function Counter() {
-  return (
-    <button>Counter</button>
-  )
-}
+import Header from './components/Header.jsx'
+import Main from './components/Main.jsx'
+import Footer from './components/Footer.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Header />
