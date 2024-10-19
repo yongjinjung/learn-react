@@ -47,6 +47,7 @@ main {
 .course__img {
   border-radius: 6px;
   width: 120px;
+  height: 120px;
 }
 
 .course__title {
@@ -81,7 +82,6 @@ main {
   color: #393939;
 }
 
-.icon-heart {
+.btn__img {
   width: 20px;
-  color: red;
 }
