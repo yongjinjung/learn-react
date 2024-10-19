@@ -47,6 +47,7 @@ main {
 .course__img {
   border-radius: 6px;
   width: 120px;
+  height: 120px;
 }
 
 .course__title {
@@ -79,4 +80,8 @@ main {
 }
 .btn > .fa-link {
   color: #393939;
+}
+
+.btn__img {
+  width: 20px;
 }
