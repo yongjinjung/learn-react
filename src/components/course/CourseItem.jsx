@@ -19,6 +19,12 @@ export default function CourseItem({title, descript, thumbnail}){
           <div className="course__title">{title}</div>
           <div className="course__description">{descript}</div>
         </div>
+        <div className="course__icons">
+          <button className="btn">
+            <img className="icon-heart" src="/imgs/heart-icon.svg" alt="" />
+            <img className="icon-heart" src="/imgs/heart-fill-icon.svg" alt="" />
+          </button>
+        </div>
       </article>
   );
 }
