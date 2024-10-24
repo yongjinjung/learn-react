@@ -1,6 +1,5 @@
 import './App.css';
 import PullUpPure from './components/PullUpPure';
-import PullUpPure from './components/PullUpPure';
 
 
 export default function AppPure(props) {
