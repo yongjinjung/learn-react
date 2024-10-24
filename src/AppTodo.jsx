@@ -42,7 +42,8 @@ function AppTodo(props) {
 
   //
   const handleKeyDown = (e) =>{
-    if(e.key === 'Enter'){
+    console.log(e.nativeEvent.isComposing);
+    if(e.key === 'Enter' && e.nativeEvent.isComposing === false){
       handleAddTodo();
     }
   }
