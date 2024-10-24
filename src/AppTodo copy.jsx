@@ -1,20 +1,16 @@
-import { useState, useReducer } from 'react';
+import { useState } from 'react';
 import './App.css';
 import TodoList from './components/todo/TodoList';
-import todoReducer from './reducer/todo-reducer.js'
+
 
 
 function AppTodo(props) {
 
   const [todoText, setTodoText] = useState('');
-  const [todos, dispatch] = useReducer(todoReducer, [
-                                      {id: 0, text: 'HTML&CSS 공부하기', done: false},
-                                      {id: 1, text: '자바스크립트 공부하기', done: false},
-                                    ]);
-
-
-
-
+  const [todos, setTodos] = useState([
+    {id: 0, text: 'HTML&CSS 공부하기', done: false},
+    {id: 1, text: '자바스크립트 공부하기', done: false},
+  ]);
   const [insertAt, setInsertAt] = useState(todos.length - 1);
 
   //
@@ -25,19 +21,34 @@ function AppTodo(props) {
   //1] added
   const handleAddTodo = (e) =>{
     const nextId = crypto.randomUUID();
-    dispatch({type: 'added', nextId, todoText});
+    setTodos([
+      ...todos,
+      {id: nextId, text: todoText, done: false}
+    ]);
     setTodoText('');
   }
 
   //2] added_index
   const handleInsertTodo = (e) => {
     const nextId = crypto.randomUUID();
-    dispatch({type: 'added_index', insertAt, nextId, todoText});
+    const newTodos = [
+      ...todos.slice(0, insertAt),
+      {id: nextId, text: todoText, done: false},
+      ...todos.slice(insertAt)
+    ];
+    setTodos(newTodos);
+
+
+
+    // let insertTodos = [...todos];
+    // insertTodos.splice(insertAt, 0, {id: nextId, text: todoText, done: false})
+    // setTodos(insertTodos);
   }
 
   //3] deleted
   const handleDeleteTodo = (deleteId) => {
-    dispatch({type: 'deleted', deleteId});
+    const newTodos = todos.filter(item => item.id !== deleteId);
+    setTodos(newTodos);
   } 
 
   //
@@ -49,12 +60,19 @@ function AppTodo(props) {
 
   //4] done
   const handleTodoDone = (todoId, done) => {
-      dispatch({type: 'done', todoId, done})
+      const newTodos = todos.map((item) => {
+        if(item.id === todoId){
+          return {...item, done}
+        }    
+        return item;
+      });
+      setTodos(newTodos);
   }
 
   //5] reverse
   const handleReverseTodo = (e) =>{
-    dispatch({type: 'reverse'})
+    const nextTodos = [...todos];
+    setTodos(nextTodos.reverse());
 
   }
 
