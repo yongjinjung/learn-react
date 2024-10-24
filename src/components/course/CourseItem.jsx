@@ -43,7 +43,6 @@ export default function CourseItem({title, descript, thumbnail, isFavorite, link
 
   function handleItemClick(e){
     e.stopPropagation();
-    alert('item click~!')
     open(link, '_blank');
   }
 
