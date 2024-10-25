@@ -25,7 +25,7 @@ function ButtonCounter(){
 }
 
 function Form(){
-  const [isReqBtn, setIsReqBtn] = useState(true);
+  
   const [form, setForm] = useState({
     title: '제목',
     author: '',
@@ -75,13 +75,44 @@ function Form(){
       contentTextareaRef.current.focus();
       return;
     }
-    setIsReqBtn(false);
+    
+  }, []);
+
+  const [isChanged, setIsChanged] = useState(true);
+  const prevForm = useRef(null);
+
+  useEffect(() => {
+    prevForm.current = { ...form };
+  }, []);
+
+  useEffect(()=>{
+
+    if(!form.title){
+      return;
+    }
+    if(!form.author){
+      return;
+    }
+    if(!form.content){
+      return;
+    }
+    setIsChanged(false);
 
     return ()=>{
-      setIsReqBtn(true);
+      setIsChanged(true);
     }
-  }, [form]);
+  },[form]);
 
+
+
+
+
+  // useEffect(() => {
+  //   const hasChanged = (prevForm.current.title !== form.title ||
+  //                       prevForm.current.author !== form.author ||
+  //                       prevForm.current.content !== form.content
+  //                      );
+  // }, [form]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -93,7 +124,7 @@ function Form(){
         <hr />
         <textarea type="text" name='content' placeholder='내용' ref={contentTextareaRef} value={form.content} onChange={handleForm}/>
         <hr />
-        <button disabled={isReqBtn} >전송</button>
+        <button disabled={isChanged} >전송</button>
       </fieldset>
     </form>
   )
