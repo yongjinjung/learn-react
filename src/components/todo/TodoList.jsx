@@ -3,7 +3,8 @@ import TodoItem from './TodoItem'
 import {useTodos, useTodosDispatch } from '../../context/TodoContext';
 import { useState, 
   useEffect,
-  Fragment} from 'react';
+  Fragment,
+  useMemo} from 'react';
 function TodoList(props) {
   
   //const todos = useContext(TodoContext);
@@ -22,6 +23,8 @@ function TodoList(props) {
   const filteredTodos = getFilteredTodos();
 
   const getStatsCount = () => {
+    console.log('getStatsCount 함수 실행!');
+    
     const totalCount = todos.length;
     const doneCount = todos.filter((item) => item.done).length;
 
@@ -30,9 +33,7 @@ function TodoList(props) {
       doneCount
     }
   }
-
-  const {totalCount, doneCount} = getStatsCount();
-
+  const {totalCount, doneCount} = useMemo(() => getStatsCount() ,[todos]);
   return (
     <>
     <div>
