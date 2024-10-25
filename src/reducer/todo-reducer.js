@@ -26,6 +26,7 @@ export default function todoReducer(draft, action){
       draft.reverse();
       break;
     }
+
     default:{
       throw Error('알 수 없는 액션 타입 ' + action.type);
     }
