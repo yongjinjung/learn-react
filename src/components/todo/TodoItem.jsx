@@ -1,8 +1,8 @@
 
-import { useTodos} from '../../context/TodoContext'
+import { useTodosDispatch } from '../../context/TodoContext'
 function TodoItem({item}) {
 
-  const dispatch = useTodos();
+  const dispatch = useTodosDispatch();
 
   //3] delete
   const handleDeleteTodo = (deleteId) => {
@@ -11,7 +11,7 @@ function TodoItem({item}) {
 
   //4] 'done'
   const handleToggleTodo = (id, done) => {
-    dispatch({ type: 'done',todoId : item.id, done: e.target.checked })
+    dispatch({ type: 'done',todoId : id, done: done})
   }
 
   return (
