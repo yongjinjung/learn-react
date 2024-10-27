@@ -34,6 +34,7 @@ function TodoList(props) {
     }
   }
   const {totalCount, doneCount} = useMemo(() => getStatsCount() ,[todos]);
+  
   return (
     <>
     <div>
