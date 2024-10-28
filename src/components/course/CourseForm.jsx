@@ -17,14 +17,14 @@ export default function CourseForm(props) {
   }
 
   const handleTitleChange = e => {
-    setForm({
+    updateForm({
       ...form,
       title: e.target.value,
     });
   };
 
   const handleDescriptionChange = e => {
-    setForm({
+    updateForm({
       ...form,
       description: e.target.value,
     });

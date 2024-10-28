@@ -15,7 +15,7 @@ function AppTodo(props) {
     { id: 1, text: '자바스크립트 공부하기', done: false },
   ]);
 
-  const [insertAt, setInsertAt] = useState(todos.length - 1);
+  const [insertAt, setInsertAt] = useState(state.length - 1);
 
   //
   const handleTodoTextChange = e => {
@@ -98,7 +98,7 @@ function AppTodo(props) {
       </div>
       <div>
         <select value={insertAt} onChange={e => setInsertAt(e.target.value)}>
-          {todos.map((item, index) => {
+          {state.map((item, index) => {
             return (
               <option value={index} key={item.id}>
                 {index} 번째
@@ -111,7 +111,7 @@ function AppTodo(props) {
       <div>Preview : {todoText}</div>
       <button onClick={handleReverseTodo}>Reverse</button>
       <TodoList
-        todos={todos}
+        todos={state}
         onDeleteTodo={handleDeleteTodo}
         onToggleTodo={handleTodoDone}
       />
