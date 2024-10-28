@@ -1,6 +1,11 @@
 
 import { useTodosDispatch } from '../../context/TodoContext'
-function TodoItem({item}) {
+import {memo } from "react";
+
+export default memo( function TodoItem({item}) {
+
+
+  console.log('TodoItem 렌더링!')
 
   const dispatch = useTodosDispatch();
 
@@ -24,5 +29,4 @@ function TodoItem({item}) {
     </label>
   );
 }
-
-export default TodoItem;
+)
