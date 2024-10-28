@@ -1,81 +1,73 @@
-import { useEffect, useRef, useState} from 'react';
-
+import { useEffect, useRef, useState } from 'react';
 
 // let counter = 0;
 
-function ButtonCounter(){
-
-  
+function ButtonCounter() {
   const countRef = useRef(0);
   const [count, setCount] = useState(0);
 
   console.log('✅ 리렌더링!');
-  
-  const handleClick = (e) => {
+
+  const handleClick = e => {
     // console.log(countRef);
-    console.log('countRef' , countRef.current += 1);
+    console.log('countRef', (countRef.current += 1));
     // counter++;
     // console.log('counter : ', counter);
     setCount(count + 1);
-  }
+  };
 
-  return (
-      <button onClick={handleClick}>Count</button>
-  );
+  return <button onClick={handleClick}>Count</button>;
 }
 
-function Form(){
-  
+function Form() {
   const [form, setForm] = useState({
     title: '제목',
     author: '',
-    content: ''
+    content: '',
   });
   const titleInputRef = useRef(null);
   const authorInputRef = useRef(null);
   const contentTextareaRef = useRef(null);
 
-
-  const handleForm = (e) => {
-    const {name, value}  = e.target;
+  const handleForm = e => {
+    const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: value
+      [name]: value,
     });
-  }
+  };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = e => {
     e.preventDefault();
     console.log('DOM', titleInputRef.current);
-    if(!form.title){
+    if (!form.title) {
       titleInputRef.current.focus();
       return;
     }
-    if(!form.author){
+    if (!form.author) {
       authorInputRef.current.focus();
       return;
     }
-    if(!form.content){
+    if (!form.content) {
       contentTextareaRef.current.focus();
       return;
     }
-    console.log('✅ 저장 성공~!')
-  }
+    console.log('✅ 저장 성공~!');
+  };
 
   useEffect(() => {
-    if(!form.title){
+    if (!form.title) {
       titleInputRef.current.focus();
       return;
     }
-    if(!form.author){
+    if (!form.author) {
       authorInputRef.current.focus();
       return;
     }
-    if(!form.content){
+    if (!form.content) {
       contentTextareaRef.current.focus();
       return;
     }
-    
   }, []);
 
   const [isChanged, setIsChanged] = useState(true);
@@ -85,27 +77,22 @@ function Form(){
     prevForm.current = { ...form };
   }, []);
 
-  useEffect(()=>{
-
-    if(!form.title){
+  useEffect(() => {
+    if (!form.title) {
       return;
     }
-    if(!form.author){
+    if (!form.author) {
       return;
     }
-    if(!form.content){
+    if (!form.content) {
       return;
     }
     setIsChanged(false);
 
-    return ()=>{
+    return () => {
       setIsChanged(true);
-    }
-  },[form]);
-
-
-
-
+    };
+  }, [form]);
 
   // useEffect(() => {
   //   const hasChanged = (prevForm.current.title !== form.title ||
@@ -118,22 +105,40 @@ function Form(){
     <form onSubmit={handleSubmit}>
       <fieldset>
         <legend>글쓰기</legend>
-        <input type="text" name='title' placeholder='제목' ref={titleInputRef} value={form.title} onChange={handleForm}/>
+        <input
+          type="text"
+          name="title"
+          placeholder="제목"
+          ref={titleInputRef}
+          value={form.title}
+          onChange={handleForm}
+        />
         <hr />
-        <input type="text" name='author' placeholder='작성자' ref={authorInputRef} value={form.author} onChange={handleForm}/>
+        <input
+          type="text"
+          name="author"
+          placeholder="작성자"
+          ref={authorInputRef}
+          value={form.author}
+          onChange={handleForm}
+        />
         <hr />
-        <textarea type="text" name='content' placeholder='내용' ref={contentTextareaRef} value={form.content} onChange={handleForm}/>
+        <textarea
+          type="text"
+          name="content"
+          placeholder="내용"
+          ref={contentTextareaRef}
+          value={form.content}
+          onChange={handleForm}
+        />
         <hr />
-        <button disabled={isChanged} >전송</button>
+        <button disabled={isChanged}>전송</button>
       </fieldset>
     </form>
-  )
+  );
 }
 
 export default function AppRef(props) {
-
-  
-
   return (
     <>
       <h2>Count</h2>

@@ -1,31 +1,29 @@
 import { createContext, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
-import todoReducer from '../reducer/todo-reducer.js'
+import todoReducer from '../reducer/todo-reducer.js';
 
 export const TodoContext = createContext(null);
 export const TodoDispatchContext = createContext(null);
 
-export const TodoProvider = ({children}) => {
-
+export const TodoProvider = ({ children }) => {
   const [todos, dispatch] = useImmerReducer(todoReducer, [
-    {id: 0, text: 'HTML&CSS 공부하기', done: false},
-    {id: 1, text: '자바스크립트 공부하기', done: false},
+    { id: 0, text: 'HTML&CSS 공부하기', done: false },
+    { id: 1, text: '자바스크립트 공부하기', done: false },
   ]);
-
 
   return (
     <TodoContext.Provider value={todos}>
       <TodoDispatchContext.Provider value={dispatch}>
-       {children}
+        {children}
       </TodoDispatchContext.Provider>
     </TodoContext.Provider>
   );
-}
+};
 
-export function useTodos(){
+export function useTodos() {
   return useContext(TodoContext);
 }
 
-export function useTodosDispatch(){
+export function useTodosDispatch() {
   return useContext(TodoDispatchContext);
 }

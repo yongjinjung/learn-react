@@ -2,10 +2,8 @@ import React, { useContext } from 'react';
 import { DarkModeContext } from '../../context/DarkModeContext';
 
 function Footer(props) {
-
-  const {darkMode} = useContext(DarkModeContext);
-  console.log('darkMode : ' , darkMode);
-  
+  const { darkMode } = useContext(DarkModeContext);
+  console.log('darkMode : ', darkMode);
 
   return (
     <footer className={`footer ${darkMode ? 'footer--dark' : 'footer--light'}`}>
